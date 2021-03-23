@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.IO;
+using System.Diagnostics;
 using Android;
 using Android.App;
 using Android.Graphics;
@@ -10,12 +11,20 @@ using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
+
+//using https://www.nuget.org/packages/Microsoft.ProjectOxford.Vision/
+
 using Plugin.Media;
+using Plugin.Media.Abstractions;
+using Xam.Plugins.OnDeviceCustomVision;
+
+using System;
+
+using Plugin.CurrentActivity;
 
 namespace ScanJect
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
-
+    [Activity(Label = "ScanJect", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
     public class MainActivity : AppCompatActivity, NavigationView.IOnNavigationItemSelectedListener
     {
         Button captureButton;
@@ -23,7 +32,6 @@ namespace ScanJect
         Button langBack;
         ImageView thisImageView;
         public TextView scanResult;
-        private string API_Key = "27bf10b3d67b45cf9d615bc66fc7a577";
 
         readonly string[] permissionGroup =
         {
@@ -34,8 +42,12 @@ namespace ScanJect
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState);
+			base.OnCreate(savedInstanceState);
+
+            AndroidImageClassifier.Init("model.pb", "labels.txt", ModelType.General);
+            CrossCurrentActivity.Current.Init(this, savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
             SetContentView(Resource.Layout.activity_main);
             Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
@@ -57,20 +69,20 @@ namespace ScanJect
             captureButton.Click += CaptureButton_Click;
             languageButton.Click += LanguageButton_Click;
             langBack.Click += LanguageBackButton_Click;
+
             RequestPermissions(permissionGroup, 0);
         }
 
         private void CaptureButton_Click(object sender, System.EventArgs e)
         {
-            takePhoto();
-            scanResult = (TextView)FindViewById(Resource.Id.scanResult);
-            scanResult.Text = "Scan Results: \"Wallet\" 96%";
+            TakePhoto(sender, e);
         }
 
         private void LanguageButton_Click(object sender, System.EventArgs e)
         {
             scanResult = (TextView)FindViewById(Resource.Id.scanResult);
-            scanResult.Text = "Scan Results: \"財布\" | \"Saifu\" (Japanese) 96%";
+			//scanResult.Text = "Scan Results: \"財布\" | \"Saifu\" (Japanese) 96%";
+			//System.Diagnostics.Debug.Write("Language button");
 
             LinearLayout langPage = (LinearLayout)FindViewById(Resource.Id.lang_layout);
             langPage.Visibility = ViewStates.Visible;
@@ -82,37 +94,35 @@ namespace ScanJect
             langPage.Visibility = ViewStates.Gone;
         }
 
-        async void takePhoto()
-		{
+        private async void TakePhoto(object sender, System.EventArgs e)
+        {
             await CrossMedia.Current.Initialize();
 
-            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+            var file = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
             {
-                PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium,
+                SaveToAlbum = true,
+                PhotoSize = PhotoSize.Full,
                 CompressionQuality = 40,
-                Name = "myimage.jpg",
-                Directory = "sample"
+                Name = "myimage.png",
+                Directory = "ScanJect"
             });
 
-            if(file == null)
-			{
+            if (file == null)
                 return;
-			}
 
-            byte[] imageArray = System.IO.File.ReadAllBytes(file.Path);
+            byte[] imageArray = File.ReadAllBytes(file.Path);
             Bitmap bitmap = BitmapFactory.DecodeByteArray(imageArray, 0, imageArray.Length);
             thisImageView.SetImageBitmap(bitmap);
-		}
 
-        private void obj_recog()
-		{
-
+            AndroidImageClassifier.Init("model.pb", "labels.txt", ModelType.General);
+            scanResult = (TextView)FindViewById(Resource.Id.scanResult);
+            scanResult.Text = "Scan Results: " + await ObjectRecog.CustomVisionLocalService.ClassifyImage(file);
         }
 
         public override void OnBackPressed()
         {
             DrawerLayout drawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
-            if(drawer.IsDrawerOpen(GravityCompat.Start))
+            if (drawer.IsDrawerOpen(GravityCompat.Start))
             {
                 drawer.CloseDrawer(GravityCompat.Start);
             }
@@ -139,16 +149,12 @@ namespace ScanJect
             return base.OnOptionsItemSelected(item);
         }
 
-
-
         public bool OnNavigationItemSelected(IMenuItem item)
         {
             int id = item.ItemId;
 
             if (id == Resource.Id.lang_1)
             {
-                //IMenuItem lang_1 = (IMenuItem)FindViewById(Resource.Id.lang_1);
-                //lang_1.GetType();
                 item.SetTitle("it works!");
 
             }
@@ -184,5 +190,55 @@ namespace ScanJect
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
-}
 
+    public class MainApplication : Application, Application.IActivityLifecycleCallbacks
+    {
+        public MainApplication(IntPtr handle, JniHandleOwnership transer) : base(handle, transer)
+        {
+
+        }
+
+        public override void OnCreate()
+        {
+            base.OnCreate();
+            RegisterActivityLifecycleCallbacks(this);
+        }
+
+        public override void OnTerminate()
+        {
+            base.OnTerminate();
+            UnregisterActivityLifecycleCallbacks(this);
+        }
+
+        public void OnActivityCreated(Activity activity, Bundle savedInstanceState)
+        {
+            CrossCurrentActivity.Current.Activity = activity;
+        }
+
+        public void OnActivityDestroyed(Activity activity)
+        {
+        }
+
+        public void OnActivityPaused(Activity activity)
+        {
+        }
+
+        public void OnActivityResumed(Activity activity)
+        {
+            CrossCurrentActivity.Current.Activity = activity;
+        }
+
+        public void OnActivitySaveInstanceState(Activity activity, Bundle outState)
+        {
+        }
+
+        public void OnActivityStarted(Activity activity)
+        {
+            CrossCurrentActivity.Current.Activity = activity;
+        }
+
+        public void OnActivityStopped(Activity activity)
+        {
+        }
+    }
+}

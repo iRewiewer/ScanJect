@@ -1,0 +1,104 @@
+@string/appbar_scrolling_view_behavior;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\layout\rootlayout.xml
+@string/appbar_scrolling_view_behavior;obj\Debug\100\res\layout\content_main.xml
+@string/appbar_scrolling_view_behavior;obj\Debug\100\res\layout\lang_select.xml
+adaptive-icon;obj\Debug\100\res\mipmap-anydpi-v26\ic_launcher.xml
+adaptive-icon;obj\Debug\100\res\mipmap-anydpi-v26\ic_launcher_round.xml
+alpha;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\anim\enterfromleft.xml
+alpha;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\anim\exittoleft.xml
+androidx.appcompat.widget.Toolbar;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\layout\fallbacktoolbardonotuse.xml
+androidx.appcompat.widget.Toolbar;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\layout\rootlayout.xml
+androidx.appcompat.widget.Toolbar;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\layout\shellcontent.xml
+androidx.appcompat.widget.Toolbar;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\layout\toolbar.xml
+androidx.appcompat.widget.Toolbar;obj\Debug\100\res\layout\app_bar_main.xml
+androidx.coordinatorlayout.widget.CoordinatorLayout;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\layout\rootlayout.xml
+androidx.coordinatorlayout.widget.CoordinatorLayout;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\layout\shellcontent.xml
+androidx.coordinatorlayout.widget.CoordinatorLayout;obj\Debug\100\res\layout\app_bar_main.xml
+androidx.drawerlayout.widget.DrawerLayout;obj\Debug\100\res\layout\activity_main.xml
+attr;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\values\attrs.xml
+background;obj\Debug\100\res\mipmap-anydpi-v26\ic_launcher.xml
+background;obj\Debug\100\res\mipmap-anydpi-v26\ic_launcher_round.xml
+Button;obj\Debug\100\res\layout\content_main.xml
+Button;obj\Debug\100\res\layout\lang_select.xml
+cache-path;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\51\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
+color;obj\Debug\100\res\values\colors.xml
+color;obj\Debug\100\res\values\ic_launcher_background.xml
+com.google.android.material.appbar.AppBarLayout;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\layout\flyoutcontent.xml
+com.google.android.material.appbar.AppBarLayout;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\layout\rootlayout.xml
+com.google.android.material.appbar.AppBarLayout;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\layout\shellcontent.xml
+com.google.android.material.appbar.AppBarLayout;obj\Debug\100\res\layout\app_bar_main.xml
+com.google.android.material.bottomnavigation.BottomNavigationView;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\layout\bottomtablayout.xml
+com.google.android.material.navigation.NavigationView;obj\Debug\100\res\layout\activity_main.xml
+com.google.android.material.tabs.TabLayout;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\layout\fallbacktabbardonotuse.xml
+com.google.android.material.tabs.TabLayout;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\layout\rootlayout.xml
+com.google.android.material.tabs.TabLayout;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\layout\tabbar.xml
+crc643f46942d9dd1fff9.ShellFlyoutLayout;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\layout\flyoutcontent.xml
+crc64720bb2db43a66fe9.FormsViewPager;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\layout\rootlayout.xml
+declare-styleable;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\values\attrs.xml
+dimen;obj\Debug\100\res\values\dimens.xml
+external-cache-path;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\51\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
+external-files-path;obj\Debug\100\res\xml\file_paths.xml
+external-path;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\51\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
+foreground;obj\Debug\100\res\mipmap-anydpi-v26\ic_launcher.xml
+foreground;obj\Debug\100\res\mipmap-anydpi-v26\ic_launcher_round.xml
+FrameLayout;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\layout\bottomtablayout.xml
+gradient;obj\Debug\100\res\drawable\side_nav_bar.xml
+GridLayout;obj\Debug\100\res\layout\content_main.xml
+ImageView;obj\Debug\100\res\layout\content_main.xml
+ImageView;obj\Debug\100\res\layout\nav_header_main.xml
+include;obj\Debug\100\res\layout\activity_main.xml
+include;obj\Debug\100\res\layout\app_bar_main.xml
+include;obj\Debug\100\res\layout\content_main.xml
+item;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\values\styles.xml
+item;obj\Debug\100\res\menu\activity_main_drawer.xml
+item;obj\Debug\100\res\menu\menu_main.xml
+item;obj\Debug\100\res\values\drawables.xml
+item;obj\Debug\100\res\values\styles.xml
+item;obj\Debug\100\res\values-v21\styles.xml
+LinearLayout;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\layout\bottomtablayout.xml
+LinearLayout;obj\Debug\100\res\layout\content_main.xml
+LinearLayout;obj\Debug\100\res\layout\lang_select.xml
+LinearLayout;obj\Debug\100\res\layout\nav_header_main.xml
+menu;obj\Debug\100\res\menu\activity_main_drawer.xml
+menu;obj\Debug\100\res\menu\menu_main.xml
+path;obj\Debug\100\res\drawable-v21\ic_menu_camera.xml
+path;obj\Debug\100\res\drawable-v21\ic_menu_gallery.xml
+path;obj\Debug\100\res\drawable-v21\ic_menu_manage.xml
+path;obj\Debug\100\res\drawable-v21\ic_menu_send.xml
+path;obj\Debug\100\res\drawable-v21\ic_menu_share.xml
+path;obj\Debug\100\res\drawable-v21\ic_menu_slideshow.xml
+paths;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\51\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
+paths;obj\Debug\100\res\xml\file_paths.xml
+resources;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\values\attrs.xml
+resources;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\values\strings.xml
+resources;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\values\styles.xml
+resources;obj\Debug\100\res\values\colors.xml
+resources;obj\Debug\100\res\values\dimens.xml
+resources;obj\Debug\100\res\values\drawables.xml
+resources;obj\Debug\100\res\values\ic_launcher_background.xml
+resources;obj\Debug\100\res\values\strings.xml
+resources;obj\Debug\100\res\values\styles.xml
+resources;obj\Debug\100\res\values-v21\styles.xml
+set;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\anim\enterfromleft.xml
+set;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\anim\enterfromright.xml
+set;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\anim\exittoleft.xml
+set;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\anim\exittoright.xml
+shape;obj\Debug\100\res\drawable\side_nav_bar.xml
+string;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\values\strings.xml
+string;obj\Debug\100\res\values\strings.xml
+style;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\values\styles.xml
+style;obj\Debug\100\res\values\styles.xml
+style;obj\Debug\100\res\values-v21\styles.xml
+TextView;obj\Debug\100\res\layout\content_main.xml
+TextView;obj\Debug\100\res\layout\nav_header_main.xml
+translate;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\anim\enterfromleft.xml
+translate;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\anim\enterfromright.xml
+translate;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\anim\exittoleft.xml
+translate;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\anim\exittoright.xml
+vector;obj\Debug\100\res\drawable-v21\ic_menu_camera.xml
+vector;obj\Debug\100\res\drawable-v21\ic_menu_gallery.xml
+vector;obj\Debug\100\res\drawable-v21\ic_menu_manage.xml
+vector;obj\Debug\100\res\drawable-v21\ic_menu_send.xml
+vector;obj\Debug\100\res\drawable-v21\ic_menu_share.xml
+vector;obj\Debug\100\res\drawable-v21\ic_menu_slideshow.xml
+xamarin.forms.platform.android.appcompat.FormsViewPager;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\layout\rootlayout.xml
+xamarin.forms.platform.android.ShellFlyoutLayout;C:\Users\iRewiewer\Documents\Visual Studio Projects\ScanJect\ScanJect\obj\Debug\100\lp\52\jl\res\layout\flyoutcontent.xml

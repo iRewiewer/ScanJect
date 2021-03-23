@@ -9,6 +9,7 @@
     tools:showIn="@layout/app_bar_main"
     android:orientation="vertical"
     android:weightSum="100"
+    android:background="@color/colorWhite"
     >
 
     <include
@@ -22,14 +23,25 @@
     <ImageView
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_weight="80"
+        android:layout_weight="100"
         android:layout_gravity="center"
         android:id="@+id/thisImageView"
         android:src="@drawable/icon"
         android:contentDescription="Desc"
      />
-    <GridLayout
+
+    <TextView
+        android:text="Scan Results"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
         android:layout_weight="20"
+        android:layout_gravity="left"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:id="@+id/scanResult"
+     />
+
+    <GridLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:padding="0px"
@@ -55,14 +67,5 @@
             />
 
     </GridLayout>
-
-    <TextView
-        android:text="Scan Results"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_weight="20"
-        android:layout_gravity="left"
-        android:id="@+id/scanResult"
-     />
 
 </LinearLayout>
