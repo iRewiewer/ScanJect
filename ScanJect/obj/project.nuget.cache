@@ -1,13 +1,34 @@
 {
   "version": 2,
-  "dgSpecHash": "BPCtxvW49iB4u9hV6IH+HpTxJppM2OE/gRCIlGtAAC8uUgfsDU7f9+YRd3eBYw/witrYUdleg4NVfZJW3RMaVA==",
+  "dgSpecHash": "tbY4fU+3jYYVpe88PLP979Swt1tUHxCCvAYlsVcqpaIGtr6o9vsdW+YBpwcVKefi+VE5uo5BuCceM1oEhPGXGQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\iRewiewer\\Documents\\Visual Studio Projects\\ScanJect\\ScanJect\\ScanJect.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\iRewiewer\\.nuget\\packages\\google.api.commonprotos\\2.2.0\\google.api.commonprotos.2.2.0.nupkg.sha512",
+    "C:\\Users\\iRewiewer\\.nuget\\packages\\google.api.gax\\3.2.0\\google.api.gax.3.2.0.nupkg.sha512",
+    "C:\\Users\\iRewiewer\\.nuget\\packages\\google.api.gax.grpc\\3.2.0\\google.api.gax.grpc.3.2.0.nupkg.sha512",
+    "C:\\Users\\iRewiewer\\.nuget\\packages\\google.api.gax.grpc.grpccore\\3.2.0\\google.api.gax.grpc.grpccore.3.2.0.nupkg.sha512",
+    "C:\\Users\\iRewiewer\\.nuget\\packages\\google.api.gax.rest\\3.0.0\\google.api.gax.rest.3.0.0.nupkg.sha512",
+    "C:\\Users\\iRewiewer\\.nuget\\packages\\google.apis\\1.51.0\\google.apis.1.51.0.nupkg.sha512",
+    "C:\\Users\\iRewiewer\\.nuget\\packages\\google.apis.auth\\1.51.0\\google.apis.auth.1.51.0.nupkg.sha512",
+    "C:\\Users\\iRewiewer\\.nuget\\packages\\google.apis.core\\1.51.0\\google.apis.core.1.51.0.nupkg.sha512",
+    "C:\\Users\\iRewiewer\\.nuget\\packages\\google.apis.translate.v2\\1.51.0.875\\google.apis.translate.v2.1.51.0.875.nupkg.sha512",
+    "C:\\Users\\iRewiewer\\.nuget\\packages\\google.apis.translate.v3\\1.51.0.2262\\google.apis.translate.v3.1.51.0.2262.nupkg.sha512",
+    "C:\\Users\\iRewiewer\\.nuget\\packages\\google.cloud.translate.v3\\2.1.0\\google.cloud.translate.v3.2.1.0.nupkg.sha512",
+    "C:\\Users\\iRewiewer\\.nuget\\packages\\google.cloud.translation.v2\\2.0.0\\google.cloud.translation.v2.2.0.0.nupkg.sha512",
+    "C:\\Users\\iRewiewer\\.nuget\\packages\\google.longrunning\\2.1.0\\google.longrunning.2.1.0.nupkg.sha512",
+    "C:\\Users\\iRewiewer\\.nuget\\packages\\google.protobuf\\3.13.0\\google.protobuf.3.13.0.nupkg.sha512",
+    "C:\\Users\\iRewiewer\\.nuget\\packages\\grpc.auth\\2.31.0\\grpc.auth.2.31.0.nupkg.sha512",
+    "C:\\Users\\iRewiewer\\.nuget\\packages\\grpc.core\\2.31.0\\grpc.core.2.31.0.nupkg.sha512",
+    "C:\\Users\\iRewiewer\\.nuget\\packages\\grpc.core.api\\2.31.0\\grpc.core.api.2.31.0.nupkg.sha512",
+    "C:\\Users\\iRewiewer\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.0.0\\microsoft.bcl.asyncinterfaces.1.0.0.nupkg.sha512",
     "C:\\Users\\iRewiewer\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
     "C:\\Users\\iRewiewer\\.nuget\\packages\\plugin.currentactivity\\2.1.0.2\\plugin.currentactivity.2.1.0.2.nupkg.sha512",
     "C:\\Users\\iRewiewer\\.nuget\\packages\\plugin.permissions\\3.0.0.12\\plugin.permissions.3.0.0.12.nupkg.sha512",
+    "C:\\Users\\iRewiewer\\.nuget\\packages\\system.buffers\\4.4.0\\system.buffers.4.4.0.nupkg.sha512",
+    "C:\\Users\\iRewiewer\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
     "C:\\Users\\iRewiewer\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Users\\iRewiewer\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512",
     "C:\\Users\\iRewiewer\\.nuget\\packages\\xam.android.tensorflow\\1.0.0\\xam.android.tensorflow.1.0.0.nupkg.sha512",
     "C:\\Users\\iRewiewer\\.nuget\\packages\\xam.plugin.media\\4.0.1.5\\xam.plugin.media.4.0.1.5.nupkg.sha512",
     "C:\\Users\\iRewiewer\\.nuget\\packages\\xam.plugins.ondevicecustomvision\\2.1.1\\xam.plugins.ondevicecustomvision.2.1.1.nupkg.sha512",
@@ -101,5 +122,86 @@
     "C:\\Users\\iRewiewer\\.nuget\\packages\\xamarin.google.android.material\\1.2.1.1\\xamarin.google.android.material.1.2.1.1.nupkg.sha512",
     "C:\\Users\\iRewiewer\\.nuget\\packages\\xamarin.google.guava.listenablefuture\\1.0.0.2\\xamarin.google.guava.listenablefuture.1.0.0.2.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1605",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Detected package downgrade: Newtonsoft.Json from 12.0.3 to 12.0.2. Reference the package directly from the project to select a different version. \r\n ScanJect -> Google.Apis.Translate.v2 1.51.0.875 -> Google.Apis 1.51.0 -> Google.Apis.Core 1.51.0 -> Newtonsoft.Json (>= 12.0.3) \r\n ScanJect -> Newtonsoft.Json (>= 12.0.2)",
+      "libraryId": "Newtonsoft.Json",
+      "targetGraphs": [
+        "MonoAndroid,Version=v10.0"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Detected package downgrade: Newtonsoft.Json from 12.0.3 to 12.0.2. Reference the package directly from the project to select a different version. \r\n ScanJect -> Google.Apis.Translate.v2 1.51.0.875 -> Google.Apis.Auth 1.51.0 -> Google.Apis.Core 1.51.0 -> Newtonsoft.Json (>= 12.0.3) \r\n ScanJect -> Newtonsoft.Json (>= 12.0.2)",
+      "libraryId": "Newtonsoft.Json",
+      "targetGraphs": [
+        "MonoAndroid,Version=v10.0"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Detected package downgrade: Newtonsoft.Json from 12.0.3 to 12.0.2. Reference the package directly from the project to select a different version. \r\n ScanJect -> Google.Apis.Translate.v3 1.51.0.2262 -> Google.Apis 1.51.0 -> Google.Apis.Core 1.51.0 -> Newtonsoft.Json (>= 12.0.3) \r\n ScanJect -> Newtonsoft.Json (>= 12.0.2)",
+      "libraryId": "Newtonsoft.Json",
+      "targetGraphs": [
+        "MonoAndroid,Version=v10.0"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Detected package downgrade: Newtonsoft.Json from 12.0.3 to 12.0.2. Reference the package directly from the project to select a different version. \r\n ScanJect -> Google.Apis.Translate.v3 1.51.0.2262 -> Google.Apis.Auth 1.51.0 -> Google.Apis.Core 1.51.0 -> Newtonsoft.Json (>= 12.0.3) \r\n ScanJect -> Newtonsoft.Json (>= 12.0.2)",
+      "libraryId": "Newtonsoft.Json",
+      "targetGraphs": [
+        "MonoAndroid,Version=v10.0"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Detected package downgrade: Newtonsoft.Json from 12.0.3 to 12.0.2. Reference the package directly from the project to select a different version. \r\n ScanJect -> Google.Cloud.Translation.V2 2.0.0 -> Google.Api.Gax.Rest 3.0.0 -> Google.Api.Gax 3.0.0 -> Newtonsoft.Json (>= 12.0.3) \r\n ScanJect -> Newtonsoft.Json (>= 12.0.2)",
+      "libraryId": "Newtonsoft.Json",
+      "targetGraphs": [
+        "MonoAndroid,Version=v10.0"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Detected package downgrade: Newtonsoft.Json from 12.0.3 to 12.0.2. Reference the package directly from the project to select a different version. \r\n ScanJect -> Google.Cloud.Translate.V3 2.1.0 -> Google.Api.Gax.Grpc.GrpcCore 3.2.0 -> Google.Api.Gax.Grpc 3.2.0 -> Google.Api.Gax 3.2.0 -> Newtonsoft.Json (>= 12.0.3) \r\n ScanJect -> Newtonsoft.Json (>= 12.0.2)",
+      "libraryId": "Newtonsoft.Json",
+      "targetGraphs": [
+        "MonoAndroid,Version=v10.0"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Detected package downgrade: Newtonsoft.Json from 12.0.3 to 12.0.2. Reference the package directly from the project to select a different version. \r\n ScanJect -> Google.Cloud.Translation.V2 2.0.0 -> Google.Api.Gax.Rest 3.0.0 -> Google.Apis.Auth 1.44.1 -> Google.Apis.Core 1.44.1 -> Newtonsoft.Json (>= 12.0.3) \r\n ScanJect -> Newtonsoft.Json (>= 12.0.2)",
+      "libraryId": "Newtonsoft.Json",
+      "targetGraphs": [
+        "MonoAndroid,Version=v10.0"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Detected package downgrade: Newtonsoft.Json from 12.0.3 to 12.0.2. Reference the package directly from the project to select a different version. \r\n ScanJect -> Google.Cloud.Translate.V3 2.1.0 -> Google.Api.Gax.Grpc.GrpcCore 3.2.0 -> Google.Api.Gax.Grpc 3.2.0 -> Google.Apis.Auth 1.48.0 -> Google.Apis.Core 1.48.0 -> Newtonsoft.Json (>= 12.0.3) \r\n ScanJect -> Newtonsoft.Json (>= 12.0.2)",
+      "libraryId": "Newtonsoft.Json",
+      "targetGraphs": [
+        "MonoAndroid,Version=v10.0"
+      ]
+    }
+  ]
 }

@@ -92,5 +92,6 @@
     <Import Project="C:\Microsoft\Xamarin\NuGet\xamarin.android.support.v4\28.0.0.3\build\monoandroid90\Xamarin.Android.Support.v4.targets" Condition="Exists('C:\Microsoft\Xamarin\NuGet\xamarin.android.support.v4\28.0.0.3\build\monoandroid90\Xamarin.Android.Support.v4.targets')" />
     <Import Project="C:\Microsoft\Xamarin\NuGet\xamarin.android.support.transition\28.0.0.3\build\monoandroid90\Xamarin.Android.Support.Transition.targets" Condition="Exists('C:\Microsoft\Xamarin\NuGet\xamarin.android.support.transition\28.0.0.3\build\monoandroid90\Xamarin.Android.Support.Transition.targets')" />
     <Import Project="C:\Microsoft\Xamarin\NuGet\xamarin.android.support.design\28.0.0.3\build\monoandroid90\Xamarin.Android.Support.Design.targets" Condition="Exists('C:\Microsoft\Xamarin\NuGet\xamarin.android.support.design\28.0.0.3\build\monoandroid90\Xamarin.Android.Support.Design.targets')" />
+    <Import Project="$(NuGetPackageRoot)grpc.core\2.31.0\build\MonoAndroid10\Grpc.Core.targets" Condition="Exists('$(NuGetPackageRoot)grpc.core\2.31.0\build\MonoAndroid10\Grpc.Core.targets')" />
   </ImportGroup>
 </Project>

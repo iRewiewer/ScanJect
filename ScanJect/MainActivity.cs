@@ -32,6 +32,7 @@ namespace ScanJect
         Button langBack;
         ImageView thisImageView;
         public TextView scanResult;
+        bool hasTakenPhoto = false;
 
         readonly string[] permissionGroup =
         {
@@ -42,54 +43,63 @@ namespace ScanJect
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
-			base.OnCreate(savedInstanceState);
-
+            // Initiate Xamarin, Classifier & App Instance
+            base.OnCreate(savedInstanceState);
             AndroidImageClassifier.Init("model.pb", "labels.txt", ModelType.General);
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
+            // Set app page on launch
             SetContentView(Resource.Layout.activity_main);
+
+            // Widget toolbar
             Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
 
+            // Drawer Layout
             DrawerLayout drawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
             ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, Resource.String.navigation_drawer_open, Resource.String.navigation_drawer_close);
             drawer.AddDrawerListener(toggle);
             toggle.SyncState();
 
+            // Navbar - User Profile
             NavigationView navigationView = FindViewById<NavigationView>(Resource.Id.nav_view);
             navigationView.SetNavigationItemSelectedListener(this);
 
+            // Get buttons
             captureButton = (Button)FindViewById(Resource.Id.captureButton);
             languageButton = (Button)FindViewById(Resource.Id.languageButton);
             langBack = (Button)FindViewById(Resource.Id.langBack);
             thisImageView = (ImageView)FindViewById(Resource.Id.thisImageView);
 
+            // Run functions corresponding to buttons on click
             captureButton.Click += CaptureButton_Click;
             languageButton.Click += LanguageButton_Click;
             langBack.Click += LanguageBackButton_Click;
 
+            // Request permissions
             RequestPermissions(permissionGroup, 0);
         }
 
-        private void CaptureButton_Click(object sender, System.EventArgs e)
+        private void CaptureButton_Click(object sender, EventArgs e)
         {
             TakePhoto(sender, e);
         }
 
-        private void LanguageButton_Click(object sender, System.EventArgs e)
+        private void LanguageButton_Click(object sender, EventArgs e)
         {
             scanResult = (TextView)FindViewById(Resource.Id.scanResult);
-			//scanResult.Text = "Scan Results: \"財布\" | \"Saifu\" (Japanese) 96%";
-			//System.Diagnostics.Debug.Write("Language button");
 
             LinearLayout langPage = (LinearLayout)FindViewById(Resource.Id.lang_layout);
             langPage.Visibility = ViewStates.Visible;
         }
 
-        private void LanguageBackButton_Click(object sender, System.EventArgs e)
+        private void LanguageBackButton_Click(object sender, EventArgs e)
         {
+            scanResult = (TextView)FindViewById(Resource.Id.scanResult);
+            string translation = Translator.TranslateSample.TranslateText2("en", "ru", "Chair");
+            scanResult.Text = scanResult.Text + translation;
             LinearLayout langPage = (LinearLayout)FindViewById(Resource.Id.lang_layout);
             langPage.Visibility = ViewStates.Gone;
         }
@@ -116,7 +126,7 @@ namespace ScanJect
 
             AndroidImageClassifier.Init("model.pb", "labels.txt", ModelType.General);
             scanResult = (TextView)FindViewById(Resource.Id.scanResult);
-            scanResult.Text = "Scan Results: " + await ObjectRecog.CustomVisionLocalService.ClassifyImage(file);
+            scanResult.Text = "Scan Results: " + await ObjectRecog.CustomVisionLocalService.ClassifyImage(file) + " ; ";
         }
 
         public override void OnBackPressed()
@@ -183,6 +193,7 @@ namespace ScanJect
             drawer.CloseDrawer(GravityCompat.Start);
             return true;
         }
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
