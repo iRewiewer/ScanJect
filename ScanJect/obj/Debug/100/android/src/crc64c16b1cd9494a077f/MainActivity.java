@@ -5,7 +5,8 @@ public class MainActivity
 	extends androidx.appcompat.app.AppCompatActivity
 	implements
 		mono.android.IGCUserPeer,
-		com.google.android.material.navigation.NavigationView.OnNavigationItemSelectedListener
+		com.google.android.material.navigation.NavigationView.OnNavigationItemSelectedListener,
+		android.widget.AdapterView.OnItemClickListener
 {
 /** @hide */
 	public static final String __md_methods;
@@ -13,10 +14,9 @@ public class MainActivity
 		__md_methods = 
 			"n_onCreate:(Landroid/os/Bundle;)V:GetOnCreate_Landroid_os_Bundle_Handler\n" +
 			"n_onBackPressed:()V:GetOnBackPressedHandler\n" +
-			"n_onCreateOptionsMenu:(Landroid/view/Menu;)Z:GetOnCreateOptionsMenu_Landroid_view_Menu_Handler\n" +
-			"n_onOptionsItemSelected:(Landroid/view/MenuItem;)Z:GetOnOptionsItemSelected_Landroid_view_MenuItem_Handler\n" +
 			"n_onRequestPermissionsResult:(I[Ljava/lang/String;[I)V:GetOnRequestPermissionsResult_IarrayLjava_lang_String_arrayIHandler\n" +
 			"n_onNavigationItemSelected:(Landroid/view/MenuItem;)Z:GetOnNavigationItemSelected_Landroid_view_MenuItem_Handler:Google.Android.Material.Navigation.NavigationView/IOnNavigationItemSelectedListenerInvoker, Xamarin.Google.Android.Material\n" +
+			"n_onItemClick:(Landroid/widget/AdapterView;Landroid/view/View;IJ)V:GetOnItemClick_Landroid_widget_AdapterView_Landroid_view_View_IJHandler:Android.Widget.AdapterView/IOnItemClickListenerInvoker, Mono.Android, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null\n" +
 			"";
 		mono.android.Runtime.register ("ScanJect.MainActivity, ScanJect", MainActivity.class, __md_methods);
 	}
@@ -54,22 +54,6 @@ public class MainActivity
 	private native void n_onBackPressed ();
 
 
-	public boolean onCreateOptionsMenu (android.view.Menu p0)
-	{
-		return n_onCreateOptionsMenu (p0);
-	}
-
-	private native boolean n_onCreateOptionsMenu (android.view.Menu p0);
-
-
-	public boolean onOptionsItemSelected (android.view.MenuItem p0)
-	{
-		return n_onOptionsItemSelected (p0);
-	}
-
-	private native boolean n_onOptionsItemSelected (android.view.MenuItem p0);
-
-
 	public void onRequestPermissionsResult (int p0, java.lang.String[] p1, int[] p2)
 	{
 		n_onRequestPermissionsResult (p0, p1, p2);
@@ -84,6 +68,14 @@ public class MainActivity
 	}
 
 	private native boolean n_onNavigationItemSelected (android.view.MenuItem p0);
+
+
+	public void onItemClick (android.widget.AdapterView p0, android.view.View p1, int p2, long p3)
+	{
+		n_onItemClick (p0, p1, p2, p3);
+	}
+
+	private native void n_onItemClick (android.widget.AdapterView p0, android.view.View p1, int p2, long p3);
 
 	private java.util.ArrayList refList;
 	public void monodroidAddReference (java.lang.Object obj)

@@ -14,7 +14,6 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 using Xam.Plugins.OnDeviceCustomVision;
-using Org.Tensorflow;
 
 //[assembly: Dependency(typeof(AndroidImageClassifier))]
 [assembly: Xamarin.Forms.Dependency(typeof(ScanJect.ObjectRecog.AndroidImageClassifier))]
@@ -39,34 +38,6 @@ namespace ScanJect.ObjectRecog
     public interface IImageClassifier
     {
         Task<string> AnalyzeImage(MediaFile image);
-    }
-
-    public static class ImageService
-    {
-        public static async Task<MediaFile> TakePhoto()
-        {
-            MediaFile picture = null;
-
-            try
-            {
-                //picture = await CrossMedia.Current.PickPhotoAsync();
-
-                if (CrossMedia.Current.IsCameraAvailable && CrossMedia.Current.IsTakePhotoSupported)
-                {
-                    picture = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
-                    {
-                        Directory = "Pictures",
-                        Name = "photo.jpg"
-                    });
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.Write(ex);
-            }
-
-            return picture;
-        }
     }
 
     public class BaseViewModel : INotifyPropertyChanged
@@ -162,7 +133,7 @@ namespace ScanJect.ObjectRecog
         {
             var predictions = await CrossImageClassifier.Current.ClassifyImage(picture.GetStreamWithImageRotatedForExternalStorage());
             var topPrediction = predictions.OrderByDescending(t => t.Probability).First();
-            return $"{topPrediction.Tag} ({Math.Round(topPrediction.Probability * 100, 2):0.##} %)";
+            return $"{topPrediction.Tag} {Math.Round(topPrediction.Probability * 100, 2):0.##}";
         }
     }
 }

@@ -1,5 +1,5 @@
-﻿using System.IO;
-using System.Diagnostics;
+﻿using System;
+using System.IO;
 using Android;
 using Android.App;
 using Android.Graphics;
@@ -11,28 +11,34 @@ using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
-
-//using https://www.nuget.org/packages/Microsoft.ProjectOxford.Vision/
-
+using static Android.Widget.AdapterView;
+using ScanJect.Translator;
 using Plugin.Media;
+using Plugin.CurrentActivity;
 using Plugin.Media.Abstractions;
 using Xam.Plugins.OnDeviceCustomVision;
 
-using System;
-
-using Plugin.CurrentActivity;
+#pragma warning disable CS0618 // Type or member is obsolete - lang_list.SetAdapter(adapter);
+#pragma warning disable IDE0052 // Remove unread private members - for lang_page
 
 namespace ScanJect
 {
     [Activity(Label = "ScanJect", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
-    public class MainActivity : AppCompatActivity, NavigationView.IOnNavigationItemSelectedListener
+    public class MainActivity : AppCompatActivity, NavigationView.IOnNavigationItemSelectedListener, IOnItemClickListener
     {
         Button captureButton;
-        Button languageButton;
-        Button langBack;
-        ImageView thisImageView;
+        ImageView scannedImage;
+		LinearLayout lang_page;
+		TextView lang_text;
+        ListView lang_list;
+
+        IMenuItem currentItem;
+        String main_lang = "en";
+        String second_lang = "ro"; // the lang codes
+        String lang_code;
+        String lang_name;
+
         public TextView scanResult;
-        bool hasTakenPhoto = false;
 
         readonly string[] permissionGroup =
         {
@@ -40,6 +46,7 @@ namespace ScanJect
             Manifest.Permission.WriteExternalStorage,
             Manifest.Permission.Camera
         };
+
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -67,47 +74,32 @@ namespace ScanJect
             NavigationView navigationView = FindViewById<NavigationView>(Resource.Id.nav_view);
             navigationView.SetNavigationItemSelectedListener(this);
 
-            // Get buttons
+            // Get xml elements
             captureButton = (Button)FindViewById(Resource.Id.captureButton);
-            languageButton = (Button)FindViewById(Resource.Id.languageButton);
-            langBack = (Button)FindViewById(Resource.Id.langBack);
-            thisImageView = (ImageView)FindViewById(Resource.Id.thisImageView);
+            scannedImage = (ImageView)FindViewById(Resource.Id.scannedImage);
 
             // Run functions corresponding to buttons on click
-            captureButton.Click += CaptureButton_Click;
-            languageButton.Click += LanguageButton_Click;
-            langBack.Click += LanguageBackButton_Click;
+            captureButton.Click += ScanButton_Click;
 
             // Request permissions
             RequestPermissions(permissionGroup, 0);
         }
 
-        private void CaptureButton_Click(object sender, EventArgs e)
+        private void ScanButton_Click(object sender, EventArgs e)
         {
+            // if the user hasn't selected any language yet, don't let them scan
+            //if (main_lang == "none" || second_lang == "none") second_lang = "x";
+            //else second_lang = "x";
+            
             TakePhoto(sender, e);
         }
 
-        private void LanguageButton_Click(object sender, EventArgs e)
+        private async void TakePhoto(object sender, EventArgs e)
         {
-            scanResult = (TextView)FindViewById(Resource.Id.scanResult);
-
-            LinearLayout langPage = (LinearLayout)FindViewById(Resource.Id.lang_layout);
-            langPage.Visibility = ViewStates.Visible;
-        }
-
-        private void LanguageBackButton_Click(object sender, EventArgs e)
-        {
-            scanResult = (TextView)FindViewById(Resource.Id.scanResult);
-            string translation = Translator.TranslateSample.TranslateText2("en", "ru", "Chair");
-            scanResult.Text = scanResult.Text + translation;
-            LinearLayout langPage = (LinearLayout)FindViewById(Resource.Id.lang_layout);
-            langPage.Visibility = ViewStates.Gone;
-        }
-
-        private async void TakePhoto(object sender, System.EventArgs e)
-        {
+            // Initialitze the plugin
             await CrossMedia.Current.Initialize();
 
+            // Take photo
             var file = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
             {
                 SaveToAlbum = true,
@@ -117,16 +109,41 @@ namespace ScanJect
                 Directory = "ScanJect"
             });
 
+            // If photo couldn't be taken
             if (file == null)
                 return;
-
+            
+            // Convert to bitmap in order to display it
             byte[] imageArray = File.ReadAllBytes(file.Path);
             Bitmap bitmap = BitmapFactory.DecodeByteArray(imageArray, 0, imageArray.Length);
-            thisImageView.SetImageBitmap(bitmap);
+            scannedImage.SetImageBitmap(bitmap);
 
+            // Initialize object recog model
             AndroidImageClassifier.Init("model.pb", "labels.txt", ModelType.General);
+
+            // Get object & confidence
+            string scan_res = await ObjectRecog.CustomVisionLocalService.ClassifyImage(file);
+            string[] words = scan_res.Split(' ');
+            string scanned_object = words[0];
+            string confidence = "\nConfidence: " + words[1] + " %";
+
+            // Add to database
+            // words[0];
+            SQL.Database.db_add("test");
+
+            // Translation part
+            string translation;
+            if (main_lang != "en") translation = TranslateSample.TranslateText2(main_lang, scanned_object);
+            else translation = scanned_object;
+            translation += " | ";
+            if (second_lang != "en") translation += TranslateSample.TranslateText2(second_lang, scanned_object);
+            else translation += scanned_object;
+
+            // Add to scan results
             scanResult = (TextView)FindViewById(Resource.Id.scanResult);
-            scanResult.Text = "Scan Results: " + await ObjectRecog.CustomVisionLocalService.ClassifyImage(file) + " ; ";
+            scanResult.Text = "Scan Results: ";
+            scanResult.Text += translation;
+            scanResult.Text += confidence;
         }
 
         public override void OnBackPressed()
@@ -142,56 +159,86 @@ namespace ScanJect
             }
         }
 
-        public override bool OnCreateOptionsMenu(IMenu menu)
-        {
-            MenuInflater.Inflate(Resource.Menu.menu_main, menu);
-            return true;
-        }
-
-        public override bool OnOptionsItemSelected(IMenuItem item)
-        {
-            int id = item.ItemId;
-            if (id == Resource.Id.action_settings)
-            {
-                return true;
-            }
-
-            return base.OnOptionsItemSelected(item);
-        }
-
         public bool OnNavigationItemSelected(IMenuItem item)
         {
             int id = item.ItemId;
 
             if (id == Resource.Id.lang_1)
             {
-                item.SetTitle("it works!");
-
+                currentItem = item;
             }
             else if (id == Resource.Id.lang_2)
             {
-
+                currentItem = item;
             }
             else if (id == Resource.Id.lang_3)
             {
-
+                currentItem = item;
             }
             else if (id == Resource.Id.obj_1)
             {
-
+                currentItem = item;
             }
             else if (id == Resource.Id.obj_2)
             {
-
+                currentItem = item;
             }
             else if (id == Resource.Id.obj_3)
             {
-
+                currentItem = item;
+            }
+            else if (id == Resource.Id.lang_select_1)
+            {
+                currentItem = item;
+                LangPage();
+            }
+            else if (id == Resource.Id.lang_select_2)
+            {
+                currentItem = item;
+                LangPage();
             }
 
             DrawerLayout drawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
             drawer.CloseDrawer(GravityCompat.Start);
             return true;
+        }
+
+		public void LangPage()
+		{
+            lang_list = (ListView)FindViewById(Resource.Id.lang_list);
+            lang_text = (TextView)FindViewById(Resource.Id.lang_text);
+            lang_page = (LinearLayout)FindViewById(Resource.Layout.lang_page);
+
+            // Make View visible
+            View lang_incl = (View)FindViewById(Resource.Id.lang_incl);
+            lang_incl.Visibility = ViewStates.Visible;
+
+            lang_text.MovementMethod = new Android.Text.Method.ScrollingMovementMethod();
+
+            string[] items = Resources.GetStringArray(Resource.Array.language_array);
+            ArrayAdapter adapter = new ArrayAdapter<String>(this, Resource.Layout.lang_page, Resource.Id.lang_text, items);
+            lang_list.SetAdapter(adapter);
+
+			lang_list.OnItemClickListener = this;
+        }
+
+        // Item clicked in lang_text, adapted to lang_list on lang_page
+        public void OnItemClick(AdapterView parent, View view, int position, long id)
+        {
+            ListView lang_list = (ListView)FindViewById(Resource.Id.lang_list);
+            String item = (String)lang_list.GetItemAtPosition(position);
+
+            // Make View invisible again
+            View lang_incl = (View)FindViewById(Resource.Id.lang_incl);
+            lang_incl.Visibility = ViewStates.Gone;
+
+            lang_code = TranslateSample.langSwitch(item);
+            lang_name = item;
+
+            currentItem.SetTitle(lang_name);
+
+            if(currentItem.ItemId == Resource.Id.lang_select_1) main_lang = lang_code;
+            else if(currentItem.ItemId == Resource.Id.lang_select_2) second_lang = lang_code;
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -200,7 +247,7 @@ namespace ScanJect
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-    }
+	}
 
     public class MainApplication : Application, Application.IActivityLifecycleCallbacks
     {

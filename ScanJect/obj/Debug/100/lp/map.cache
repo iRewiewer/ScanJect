@@ -3,6 +3,7 @@ Plugin.CurrentActivity
 Plugin.Media
 Plugin.Permissions
 TensorFlowXamarin
+Xam.Plugin.Droid
 Xam.Plugins.OnDeviceCustomVision
 Xamarin.AndroidX.Activity
 Xamarin.AndroidX.Annotation
